@@ -1,5 +1,6 @@
 var win = require("./window");
 var topolr = require("topolr-util");
+var topolrFrontend=require("topolr");
 
 var runtime = function (option) {
     var window = win(option);
@@ -14,8 +15,7 @@ var runtime = function (option) {
         };
         (new Function("window",
             "document","XMLHttpRequest","$",
-            "FormData","Blob","File","console",
-            topolr.file(topolr.cpath.getRelativePath(__dirname,"./../topolr/topolr.js")).readSync()))(window, window.document,window.XMLHttpRequest,window.topolr,window.FormData,window.Blob,window.File,window.console);
+            "FormData","Blob","File","console",runtime.getTopolrSourceCode()))(window, window.document,window.XMLHttpRequest,window.topolr,window.FormData,window.Blob,window.File,window.console);
     }catch(e){
         console.error(e);
     }
@@ -24,6 +24,12 @@ var runtime = function (option) {
     this._window=window;
     this._init=false;
 };
+runtime.getTopolrSourceCode=function () {
+    var a=topolrFrontend.getSourceCode().trim();
+    var b=a.substring(0,a.length-5);
+    b+="window.app=app;window.app._browser=false;})();";
+    return b;
+}
 runtime.init=function () {
     if(!this._init) {
         var ths=this;

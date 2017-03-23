@@ -20,6 +20,9 @@
   "bugs": {
     "url": "https://github.com/topolr/topolr-cetus/issues"
   },
+  "scripts": {
+    "test": "node test.js"
+  },
   "homepage": "http://topolr.org",
   "contributors": [],
   "dependencies": {

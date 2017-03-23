@@ -47,7 +47,7 @@ var win = function (option) {
 win.prototype.getComputedStyle = function () {
     return {
         getPropertyValue: function () {
-            return 0;
+            return "0";
         }
     }
 };

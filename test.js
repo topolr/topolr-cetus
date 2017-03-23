@@ -24,7 +24,7 @@ a.getPageContent("http://localhost:8080/blog/index").then(function (content) {
 }).then(function (at) {
     console.log("> 4"+at);
     return a.getPageContent("http://localhost/topolr-blog/index.html");
-}).error(function (at,b) {
+}).fail(function (at,b) {
     console.error(">>   "+at);
 });
 
